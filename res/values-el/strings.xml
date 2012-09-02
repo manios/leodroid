@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, LeoDroidActivity!</string>
+    <string name="app_name">LeoDroid</string>
+    <string name="m_it_searchLine">Αναζήτηση γραμμών</string>
+    <string name="m_it_goToDestination">Μετάβαση στο Τέρμα</string>
+    <string name="m_it_goToStart">Μετάβαση στην Αφετηρία</string>
+    <string name="msg_select_line">Επιλογή γραμμής</string>
+    <string name="msg_select_direction">Επιλογή κατεύθυνσης</string>
+    <string name="msg_no_connection_found">Δεν βρέθηκε σύνδεση με το διαδίκτυο!</string>
+
+    <string-array name="msg_connection_progress">
+        <item>Σύνδεση με ΟΑΣΘ..</item>
+        <item>Αποστολή αίτητης</item>
+        <item>Λήψη δεδομένων</item>
+        <item>Τερματισμός σύνδεσης..</item>
+    </string-array>
+    <string-array name="spin_select_direction">
+        <item>Μετάβαση</item>
+        <item>Επιστροφή</item>
+    </string-array>
+
+    <string name="sql_select_buslines">select busline.id as _id,busline.num || \' \' || busline.name_gr as linestr from busline</string>
+    <string name="sql_select_stops">select v_stop.stopid as stopid ,v_stop.sorder ||\'.
+		\' || v_stop.stopname_gr as stopstr from v_stop where v_stop.direction
+		= ? and v_stop.lineid = ?</string>
+    <string name="sql_select_linespassing">select distinct v_linepass.busnum as busnum,
+		v_linepass.busname_gr as busname from v_linepass where
+		v_linepass.stopid = ?</string>
+    <string name="msg_frmt_linearrival">Όχημα $1: $2\'</string>
+    <string name="msg_frmt_linesarrival">Γραμμή %1$s: Όχημα %2$s: %1$d\'</string>
+    <string name="menu_item_linearrival">Χρόνος άφιξης</string>
+    <string name="menu_item_linesarrival">Άφιξη γραμμών</string>
+    <string name="menu_item_passinglines">Διερχόμενες γραμμές</string>
+    <string name="msg_passinglines">Διερχόμενες γραμμές</string>
+    <string name="msg_search_line_hint">Πληκτρολογείστε τον Αριθμό ή το Όνομα της
+		Λεωφ.Γραμμής:</string>
+    <string name="locale_string">gr</string>
+    <string name="msg_linesarrival_header">Άφιξη γραμμών στη στάση</string>
+    <string name="msg_linearrival_header">Άφιξη γραμμής %1$s</string>
+    <string name="but_txt_back">Επιστροφή</string>
+    <string name="m_it_about">Περί..</string>
+    <string name="msg_about_legal">Εφαρμογή για την άφιξη σε στάση των λεωφ. γραμμών
+		του Οργανισμού Αστ. Συγκοινωνιών Θεσσαλονίκης. Η εφαρμογή είναι προϊόν
+		τρίτου προσώπου. Ο ΟΑΣΘ ΔΕ ΦΕΡΕΙ ΚΑΜΜΙΑ ΕΥΘΥΝΗ ΓΙΑ ΤΗΝ ΕΓΚΥΡΟΤΗΤΑ ΤΩΝ
+		ΔΕΔΟΜΕΝΩΝ.</string>
+    <string name="msg_hint_search">Αναζήτηση γραμμής</string>
+    <string name="msg_but_direction_going">Μετάβαση</string>
+    <string name="msg_but_direction_return">Επιστροφή</string>
+    <string name="text_bus_position">Θέσεις λεωφορείων</string>
+</resources>

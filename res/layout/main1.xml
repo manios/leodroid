@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Accelerometer" />
+
+    <TextView
+        android:id="@+id/xbox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="X Value" />
+
+    <TextView
+        android:id="@+id/ybox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Y Value" />
+
+    <TextView
+        android:id="@+id/zbox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Z Value" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Orientation" />
+
+    <TextView
+        android:id="@+id/xboxo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="X Value" />
+
+    <TextView
+        android:id="@+id/yboxo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Y Value" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/zboxo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Z Value" />
+
+</LinearLayout>

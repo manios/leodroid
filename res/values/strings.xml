@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, LeoDroidActivity!</string>
+    <string name="app_name">LeoDroid</string>
+    <string name="m_it_searchLine">Search Bus line</string>
+    <string name="m_it_goToDestination">Go to Terminal</string>
+    <string name="m_it_goToStart">Go to start</string>
+    <string name="msg_select_line">Select Bus line</string>
+    <string name="msg_select_direction">Select direction</string>
+    <string name="msg_no_connection_found">No internet connection found!</string>
+
+    <string-array name="msg_connection_progress">
+        <item>Connecting to Oasth..</item>
+        <item>Sending request</item>
+        <item>Receiving data</item>
+        <item>Closing connection..</item>
+    </string-array>
+    <string-array name="spin_select_direction">
+        <item>Going</item>
+        <item>Return</item>
+    </string-array>
+
+    <string name="sql_select_buslines">select busline.id as _id, busline.num || \' \' || busline.name_en as linestr from busline</string>
+    <string name="sql_select_stops">select v_stop.stopid as stopid ,v_stop.sorder ||\'. \' || v_stop.stopname_en as stopstr from v_stop where v_stop.direction = ? and v_stop.lineid = ?</string>
+    <string name="sql_select_linespassing">select v_linepass.busnum as busnum, v_linepass.busname_en as busname from v_linepass where v_linepass.stopid = ?</string>
+    <string name="msg_frmt_linearrival">Vehicle $1: $2\'</string>
+    <string name="msg_frmt_linesarrival">Line $1: Vehicle $2: $3\'</string>
+    <string name="menu_item_linearrival">Arrival Time</string>
+    <string name="menu_item_linesarrival">Passing Lines Arrival </string>
+    <string name="menu_item_passinglines">Passing Lines</string>
+    <string name="msg_passinglines">Passing Lines</string>
+    <string name="msg_search_line_hint">Type the Number or Name of the Bus Line:</string>
+    <string name="locale_string">en</string>
+    <string name="but_txt_back">Back</string>
+    <string name="m_it_about">About</string>
+    <string name="msg_linesarrival_header">Bus lines arrival</string>
+    <string name="msg_linearrival_header">Arrival of line %1$s</string>
+    <string name="msg_hint_search">Search BusLine</string>
+    <string name="msg_but_direction_going">Going</string>
+    <string name="msg_but_direction_return">Return</string>
+    <string name="msg_but_refresh">Refresh</string>
+    <string name="text_bus_position">Bus positions</string>
+
+</resources>

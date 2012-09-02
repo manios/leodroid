@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemBusPositions"
+        android:title="@string/text_bus_position">
+    </item>
+     <item
+        android:id="@+id/itemBusPositions2"
+        android:title="Συντεταγμένες">
+    </item>
+    <item
+        android:id="@+id/itemGoToStart"
+        android:title="@string/m_it_goToStart">
+    </item>
+    <item
+        android:id="@+id/itemGoToEnd"
+        android:title="@string/m_it_goToDestination">
+    </item>
+    <item
+        android:id="@+id/itemInfo"
+        android:title="@string/m_it_about">
+    </item>
+
+</menu>
