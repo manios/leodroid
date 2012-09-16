@@ -23,10 +23,12 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
@@ -37,6 +39,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.CursorToStringConverter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LeodroidActivity extends ListActivity {
@@ -65,9 +68,16 @@ public class LeodroidActivity extends ListActivity {
 	private SimpleCursorAdapter adapterLineSearch;
 	private SimpleCursorAdapter adapterBusLineNames;
 	private Cursor cursorBusLineNames;
+	private Cursor cursorLineStopNames;
 
 	private int listviewSelPos;
 	private int spinPos;
+
+	private final String stopFromColumn[] = new String[] { "sorder", "stopname" };// ,
+																					// "n_isfavourite"
+																					// };
+	private final int stopItemToResIds[] = { R.id.textStopOrder,
+			R.id.textStopName };// , R.id.textFavouriteStop };
 
 	/** Called when the activity is first created. */
 	@Override
@@ -251,6 +261,11 @@ public class LeodroidActivity extends ListActivity {
 			cursorBusLineNames.close();
 		}
 
+		// close cursors
+		if (cursorLineStopNames != null) {
+			cursorLineStopNames.close();
+		}
+
 		// close adapters
 		if ((adapterBusLineNames != null)
 				&& (adapterBusLineNames.getCursor() != null)) {
@@ -406,76 +421,10 @@ public class LeodroidActivity extends ListActivity {
 	}
 
 	public void loadStopsList() {
-		String busStopStr[];
+		cursorLineStopNames = dbhelper.getLineStops(selLineid, selDirection);
+		setListAdapter(new MyCursorAdapter(this, R.layout.bus_stop_item,
+				cursorLineStopNames, stopFromColumn, stopItemToResIds));
 
-		/* Create the Database (no Errors if it already exists) */
-		// dbhelper = new DataBaseHelper(this);
-
-		try {
-			dbhelper.createDataBase();
-
-		} catch (IOException ioe) {
-			throw new Error("Unable to create database");
-		}
-
-		SQLiteDatabase myDB = dbhelper.getMyWritableDatabase();
-
-		try {
-			/* Query for some results with Selection and Projection. */
-
-			// Cursor c = myDB
-			// .rawQuery(
-			// "select v_stop.stopid as stopid , v_stop.sorder || '. ' || v_stop.stopname as stopstr, v_stop.routeid as routeid "
-			// + " from v_stop  where v_stop.direction = "
-			// + selDirection
-			// + " and v_stop.lineid = "
-			// + selLineid, null);
-			Cursor c = myDB.rawQuery(
-					myResources.getString(R.string.sql_select_stops),
-					new String[] { selDirection + "", selLineid + "" });
-
-			/* Get the indices of the Columns we will need */
-			int idColumn = c.getColumnIndex("stopid");
-			int strColumn = c.getColumnIndex("stopstr");
-			// int routeIDColumn = c.getColumnIndex("routeid");
-
-			busStopStr = new String[1];
-			busStopsId = new int[1];
-
-			/* Check if our result was valid. */
-			if (c != null) {
-				/* Check if at least one Result was returned. */
-				busStopStr = new String[c.getCount()];
-				busStopsId = new int[c.getCount()];
-
-				if (c.moveToFirst()) {
-					int i = 0;
-					// selRouteid = c.getInt(routeIDColumn);
-
-					do {
-						busStopStr[i] = c.getString(strColumn);
-						busStopsId[i++] = c.getInt(idColumn);
-
-						// android.util.Log.d("Line :", "Position: " + (i -
-						// 1)
-						// + " " + qID + " " + qStr);
-					} while (c.moveToNext());
-				}
-			}
-
-			// close cursor
-			c.close();
-
-			setListAdapter(new ArrayAdapter<String>(this,
-					android.R.layout.simple_list_item_1, busStopStr));
-
-		} catch (SQLiteException e) {
-			android.util.Log.e("Database error", e.getLocalizedMessage());
-		} finally {
-			if (myDB != null)
-				myDB.close();
-			dbhelper.close();
-		}
 	}
 
 	/*
@@ -836,6 +785,57 @@ public class LeodroidActivity extends ListActivity {
 
 		public int getFetchWhat() {
 			return this.fetchWhat;
+		}
+
+	}
+
+	private class MyCursorAdapter extends SimpleCursorAdapter {
+		private Context context;
+		private int layout;
+
+		public MyCursorAdapter(Context context, int layout, Cursor c,
+				String[] from, int[] to) {
+			super(context, layout, c, from, to);
+
+			this.context = context;
+			this.layout = layout;
+
+		}
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+
+			LayoutInflater inflater = LayoutInflater.from(context);
+			View v = inflater.inflate(layout, parent, false);
+			bindView(v, context, cursor);
+
+			return v;
+		}
+
+		@Override
+		public void bindView(View v, Context context, Cursor cursor) {
+
+			// int position = cursor.getPosition();
+
+			TextView textSOrder = (TextView) v.findViewById(R.id.textStopOrder);
+			TextView textStopName = (TextView) v
+					.findViewById(R.id.textStopName);
+			TextView textIsFavourite = (TextView) v
+					.findViewById(R.id.textFavouriteStop);
+
+			textSOrder.setText(cursor.getInt(cursor.getColumnIndex("sorder"))
+					+ "");
+			textStopName.setText(cursor.getString(cursor
+					.getColumnIndex("stopname")) + ".");
+
+			// boolean isFavoutite = (cursor.getInt(cursor
+			// .getColumnIndex("n_isfavourite")) == 1) ? true : false;
+			// if (!isFavoutite) {
+			// textIsFavourite.setBackgroundDrawable(null);
+			// } else {
+			textIsFavourite
+					.setBackgroundResource(android.R.drawable.btn_star_big_on);
+			// }
 		}
 
 	}

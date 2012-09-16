@@ -250,4 +250,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		return result;
 	}
+
+	public Cursor getLineStops(int lineId, int direction) {
+		Cursor result = null;
+		SQLiteDatabase mDB = getMyWritableDatabase();
+
+		if (mDB != null) {
+			result = this.getMyWritableDatabase().rawQuery(
+					myContext.getResources().getString(
+							R.string.sql_select_stops),
+					new String[] { String.valueOf(direction),
+							String.valueOf(lineId) });
+		}
+		return result;
+	}
 }

@@ -35,7 +35,7 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
     </ListView>

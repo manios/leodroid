@@ -22,8 +22,7 @@
     </string-array>
 
     <string name="sql_select_buslines">select busline.id as _id,busline.num || \' \' || busline.name_gr as linestr from busline</string>
-    <string name="sql_select_stops">select v_stop.stopid as stopid ,v_stop.sorder ||\'.
-		\' || v_stop.stopname_gr as stopstr from v_stop where v_stop.direction
+    <string name="sql_select_stops">select v_stop.stopid as _id ,v_stop.sorder as sorder , v_stop.stopname_gr as stopname from v_stop where v_stop.direction
 		= ? and v_stop.lineid = ?</string>
     <string name="sql_select_linespassing">select distinct v_linepass.busnum as busnum,
 		v_linepass.busname_gr as busname from v_linepass where
@@ -49,4 +48,5 @@
     <string name="msg_but_direction_going">Μετάβαση</string>
     <string name="msg_but_direction_return">Επιστροφή</string>
     <string name="text_bus_position">Θέσεις λεωφορείων</string>
+
 </resources>

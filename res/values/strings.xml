@@ -22,7 +22,7 @@
     </string-array>
 
     <string name="sql_select_buslines">select busline.id as _id, busline.num || \' \' || busline.name_en as linestr from busline</string>
-    <string name="sql_select_stops">select v_stop.stopid as stopid ,v_stop.sorder ||\'. \' || v_stop.stopname_en as stopstr from v_stop where v_stop.direction = ? and v_stop.lineid = ?</string>
+    <string name="sql_select_stops">select v_stop.stopid as _id ,v_stop.sorder as sorder, v_stop.stopname_en as stopname from v_stop where v_stop.direction = ? and v_stop.lineid = ?</string>
     <string name="sql_select_linespassing">select v_linepass.busnum as busnum, v_linepass.busname_en as busname from v_linepass where v_linepass.stopid = ?</string>
     <string name="msg_frmt_linearrival">Vehicle $1: $2\'</string>
     <string name="msg_frmt_linesarrival">Line $1: Vehicle $2: $3\'</string>

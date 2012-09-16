@@ -14,7 +14,5 @@
     <style name="TransparentExpandableListView" parent="@android:style/Widget.ExpandableListView">
         <item name="android:cacheColorHint">@android:color/transparent</item>
     </style>
-    
-    
 
 </resources>
